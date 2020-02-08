@@ -8,13 +8,13 @@ import androidx.recyclerview.widget.RecyclerView;
 
 public class ViewHolder extends RecyclerView.ViewHolder {
 
-    TextView mTitileTv, mDescriptionTv;
-    View mView;
+    TextView textViewTitle, textViewDescription, textViewId;
+    View view;
 
     public ViewHolder(@NonNull View itemView) {
         super(itemView);
 
-        mView = itemView;
+        view = itemView;
 
         itemView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -31,8 +31,9 @@ public class ViewHolder extends RecyclerView.ViewHolder {
             }
         });
 
-        mTitileTv = itemView.findViewById(R.id.rTitle);
-        mDescriptionTv = itemView.findViewById(R.id.rDescription);
+        textViewTitle = itemView.findViewById(R.id.text_view_title);
+        textViewDescription = itemView.findViewById(R.id.text_view_description);
+        textViewId = itemView.findViewById(R.id.text_view_id);
     }
 
     private ViewHolder.ClickListener mClickListener;

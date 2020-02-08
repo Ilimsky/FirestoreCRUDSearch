@@ -12,13 +12,13 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class CustomAdapter extends RecyclerView.Adapter<ViewHolder> {
 
     ListActivity listActivity;
     List<Model> modelList;
-    Context context;
 
     public CustomAdapter(ListActivity listActivity, List<Model> modelList) {
         this.listActivity = listActivity;
@@ -36,9 +36,10 @@ public class CustomAdapter extends RecyclerView.Adapter<ViewHolder> {
         viewHolder.setOnClickListener(new ViewHolder.ClickListener() {
             @Override
             public void onItemClick(View view, int position) {
+                String id = modelList.get(position).getId();
                 String title = modelList.get(position).getTitle();
                 String description = modelList.get(position).getDescription();
-                Toast.makeText(listActivity, title + "\n" + description, Toast.LENGTH_SHORT).show();
+                Toast.makeText(listActivity, id + "\n" + title + "\n" + description, Toast.LENGTH_SHORT).show();
             }
 
             @Override
@@ -58,7 +59,7 @@ public class CustomAdapter extends RecyclerView.Adapter<ViewHolder> {
                             intent.putExtra("pDescription", description);
                             listActivity.startActivity(intent);
                         } if (which == 1){
-
+                            listActivity.deleteData(position);
                         }
                     }
                 }).create().show();
@@ -69,13 +70,19 @@ public class CustomAdapter extends RecyclerView.Adapter<ViewHolder> {
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
-        viewHolder.mTitileTv.setText(modelList.get(i).getTitle());
-        viewHolder.mDescriptionTv.setText(modelList.get(i).getDescription());
+    public void onBindViewHolder(ViewHolder viewHolder, int i) {
+        viewHolder.textViewId.setText((i + 1) + " " + modelList.get(i).getId());
+        viewHolder.textViewTitle.setText(modelList.get(i).getTitle());
+        viewHolder.textViewDescription.setText(modelList.get(i).getDescription());
     }
 
     @Override
     public int getItemCount() {
         return modelList.size();
+    }
+
+    public void filterList(ArrayList<Model> filteredList){
+        modelList = filteredList;
+        notifyDataSetChanged();
     }
 }

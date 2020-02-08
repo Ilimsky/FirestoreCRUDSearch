@@ -1,9 +1,5 @@
 package de.springco.firestorecrudsearch;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,6 +7,10 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -91,7 +91,9 @@ public class MainActivity extends AppCompatActivity {
         pd.setTitle("Updating Data...");
         pd.show();
         db.collection("Documents").document(id)
-                .update("title", title, "description", description)
+                .update("title", title,
+                        "search", title.toLowerCase(),
+                        "description", description)
                 .addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
@@ -115,6 +117,7 @@ public class MainActivity extends AppCompatActivity {
         Map<String, Object> doc = new HashMap<>();
         doc.put("id", id);
         doc.put("title", title);
+        doc.put("search", title.toLowerCase());
         doc.put("description", description);
 
         db.collection("Documents").document(id).set(doc)

@@ -1,2 +1,2 @@
-include ':app'
+include ':app', ':search', ':incrementid'
 rootProject.name='Firestore CRUD & Search'

@@ -16,23 +16,29 @@
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/rTitle"
+            android:id="@+id/text_view_id"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Title"
+            android:text="@string/id"
             android:textColor="#000"
             android:textSize="22sp" />
 
         <TextView
-            android:id="@+id/rDescription"
+            android:id="@+id/text_view_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Description"
+            android:text="@string/title"
+            android:textColor="#000"
+            android:textSize="22sp" />
+
+        <TextView
+            android:id="@+id/text_view_description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/description"
             android:textColor="#000"
             android:textSize="18sp" />
 
-
     </LinearLayout>
-
 
 </androidx.cardview.widget.CardView>
